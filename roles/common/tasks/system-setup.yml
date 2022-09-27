@@ -1,15 +1,4 @@
-#Update IP address in SystemD file"
-#echo "${COMPONENT} service setup"
-#mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
-#StatusCheck $?
-#
-#systemctl daemon-reload &>>${LOG_FILE}
-#systemctl enable ${COMPONENT} &>>${LOG_FILE}
-#
-#
-#echo "restarting ${COMPONENT} service"
-#systemctl restart ${COMPONENT} &>>${LOG_FILE}
-#StatusCheck $?
+
 - name: Copy systemd file into new path
   ansible.builtin.copy:
     src: "{{COMPONENT}}.service"

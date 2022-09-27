@@ -30,11 +30,3 @@
     name: nginx
     state: restarted
     enabled: yes
-
-
-  #mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf &>> /tmp/frontend
-  #StatusCheck $?
-  #echo Starting Nginx Service
-  #systemctl enable nginx &>>LOG_FILE
-  #systemctl restart nginx &>>LOG_FILE
-  #StatusCheck $?
