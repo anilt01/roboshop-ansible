@@ -1,0 +1,19 @@
+#Update IP address in SystemD file"
+#echo "${COMPONENT} service setup"
+#mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+#StatusCheck $?
+#
+#systemctl daemon-reload &>>${LOG_FILE}
+#systemctl enable ${COMPONENT} &>>${LOG_FILE}
+#
+#
+#echo "restarting ${COMPONENT} service"
+#systemctl restart ${COMPONENT} &>>${LOG_FILE}
+#StatusCheck $?
+
+- name: Reload and restarting the service/ setting up the service
+  ansible.builtin.systemd:
+    name: "{{COMPONENT}}.service"
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
