@@ -10,6 +10,10 @@
 #echo "restarting ${COMPONENT} service"
 #systemctl restart ${COMPONENT} &>>${LOG_FILE}
 #StatusCheck $?
+- name: Copy systemd file into new path
+  ansible.builtin.copy:
+    src: "{{COMPONENT}}.service"
+    dest: /etc/systemd/system/${COMPONENT}.service
 
 - name: Reload and restarting the service/ setting up the service
   ansible.builtin.systemd:
