@@ -98,7 +98,9 @@
   ignore_errors: yes
   register: plugins_status
 
-- name: print plugins_status
-  ansible.builtin.debug:
-    msg: "{{plugins_status | regex_findall('validate_password')}}"
-
+- name: Uninstalling password plugin
+  community.mysql.mysql_query:
+    query: 'uninstall plugin validate_password'
+    login_user: root
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
+  when: plugins_status | regex_findall('validate_password') | length > 0
