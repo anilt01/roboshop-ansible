@@ -44,10 +44,15 @@
 - name: Disabling previous mysql modules
   ansible.builtin.shell: dnf module disable mysql -y
 
-- name: Installing mysql server
+- name: Installing mysql server, devel package and python3 dependency packages
   ansible.builtin.dnf:
-    name: mysql-community-server
+    name: "{{item}}"
     state: installed
+    loop:
+      - mysql-community-server
+      - mysql-community-devel
+      - gcc
+      - python36-devel
 
 - name: enable and restarting mysql server
   ansible.builtin.systemd:
@@ -60,6 +65,19 @@
     src: /var/log/mysqld.log
   register: out
 # to fetch the default password
+
+- name: Install mysql pip3 client
+  ansible.builtin.pip:
+    name: mysqlclient
+    executable: pip3
+
+# running mysql queries using ansible
+- name: Check mysql credentials
+  ansible.mysql.mysqlinfo:
+    login_user: root
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
+    filter: version
+  ignore_errors: yes
 
 - name: print out
   ansible.builtin.debug:
