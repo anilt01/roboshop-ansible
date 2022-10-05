@@ -48,7 +48,7 @@
   ansible.builtin.dnf:
     name: "{{item}}"
     state: installed
-    loop:
+  loop:
       - mysql-community-devel
       - mysql-community-server
       - gcc
