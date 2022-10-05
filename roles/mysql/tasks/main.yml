@@ -73,7 +73,7 @@
 
 # running mysql queries using ansible
 - name: Check mysql credentials
-  ansible.mysql.mysqlinfo:
+  ansible.mysql.mysql_info:
     login_user: root
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
     filter: version
