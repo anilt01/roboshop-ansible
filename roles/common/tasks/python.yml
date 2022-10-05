@@ -1,0 +1,28 @@
+
+#    APP_UID=$(id -u roboshop)
+#    APP_GID=$(id -g roboshop)
+#
+#    echo "Update Payment Configuration file"
+#    sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid = ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.ini &>>${LOG_FILE}
+#    StatusCheck $?
+#
+#    SYSTEMD_SETUP
+
+- name: Download pyhon devel, python and gcc
+  ansible.builtin.yum:
+    name:
+      - python36
+      - python36-devel
+      - gcc
+    state: installed
+
+- name: Import app-prereq task
+  ansible.builtin.import_tasks: app-prereq.yml
+
+- name: Installing PIP requirements for the file
+  ansible.builtin.pip:
+    requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
+    executable: pip3
+
+- name: Import system-setup task
+  ansible.builtin.import_tasks: system-setup.yml
