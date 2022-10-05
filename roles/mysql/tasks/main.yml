@@ -62,6 +62,6 @@
 # to fetch the default password
 
 - name: print out
-  ansible.builtin.debug:
-    msg: "{{ out['content'] | b64decode | regex_search('A temporary password') }}"
+  debug:
+    msg: "{{ out['content'] | b64decode | regex_findall('A temporary password') }}"
 
