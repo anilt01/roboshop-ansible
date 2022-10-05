@@ -95,7 +95,6 @@
     query: 'show plugins'
     login_user: root
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
-    filter: version
   ignore_errors: yes
   register: plugins_status
 
