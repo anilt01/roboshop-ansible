@@ -49,8 +49,8 @@
     name: "{{item}}"
     state: installed
     loop:
-      - mysql-community-server
       - mysql-community-devel
+      - mysql-community-server
       - gcc
       - python36-devel
 
