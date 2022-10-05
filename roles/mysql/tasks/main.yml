@@ -78,8 +78,28 @@
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
     filter: version
   ignore_errors: yes
+  register: mysql_conn_status
 
-- name: print out
+- name: copy sql file to reset password
+  ansible.builtin.template:
+    src: reset-root-pass.sql
+    dest: /tmp/root-pass.sql
+  when: mysql_conn_status is failed
+
+- name: Change the password
+  ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{ out['content'] | b64decode | regex_findall('A temporary password.*') | join (' ') | split (' ') | last }}" </tmp/root-pass.sql
+  when: mysql_conn_status is failed
+
+- name: validating password plugin
+  community.mysql.mysql_query:
+    query: 'show plugins'
+    login_user: root
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
+    filter: version
+  ignore_errors: yes
+  register: plugins_status
+
+- name: print plugins_status
   ansible.builtin.debug:
-    msg: "{{ out['content'] | b64decode | regex_findall('A temporary password.*') | join (' ') | split (' ') | last }}"
+    msg: "{{plugins_status | regex_findall('validate_password') | length}}"
 
