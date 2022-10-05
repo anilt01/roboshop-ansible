@@ -64,3 +64,4 @@
 - name: print out
   ansible.builtin.debug:
     msg: "{{ out['content'] | b64decode | regex_search('A temporary password') }}"
+
