@@ -1,0 +1,29 @@
+#echo "Install Maven"
+#yum install maven -y  &>>${LOG_FILE}
+#StatusCheck $?
+#
+#APP_PREREQ
+#
+#echo "Download Dependencies & Make Package"
+#mvn clean package &>>${LOG_FILE}
+#mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar   &>>${LOG_FILE}
+#StatusCheck $?
+#
+#SYSTEMD_SETUP
+
+- name: Install maven
+  ansible.builtin.yum:
+    name: maven
+    state: installed
+
+- name: Import app-prereq task
+  ansible.builtin.import_tasks: app-prereq.yml
+
+- name: Install maven dependencies
+  ansible.builtin.shell: mvn clean package && mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
+  args:
+    chdir: /home/roboshop/{{COMPONENT}}
+  become_user: roboshop
+
+- name: Import system-setup task
+  ansible.builtin.import_tasks: system-setup.yml
