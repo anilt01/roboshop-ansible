@@ -24,5 +24,9 @@
     requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
     executable: pip3
 
+- name: print
+  debug:
+    msg: "{{appuser}}"
+
 - name: Import system-setup task
   ansible.builtin.import_tasks: system-setup.yml
