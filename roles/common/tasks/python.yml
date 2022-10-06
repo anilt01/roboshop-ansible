@@ -26,7 +26,7 @@
 
 - name: print
   debug:
-    msg: "{{appuser}}"
+    msg: User ID = "{{appuser.uid}}" , Group ID = "{{appuser.group}}"
 
 - name: Import system-setup task
   ansible.builtin.import_tasks: system-setup.yml
