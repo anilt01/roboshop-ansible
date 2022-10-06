@@ -21,8 +21,8 @@
 - name: Update user and  group id
   ansible.builtin.lineinfile:
     path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
-    regexp: "{{item.name}}"
-    line: "{{item.name}} = {{item.id}}"
+    regexp: "^{{item.name}}"
+    line: uid = {{item.id}}
   loop:
     - { name: "uid" , id: "{{appuser.uid}}"}
     - { name: "gid" , id: "{{appuser.group}}"}
