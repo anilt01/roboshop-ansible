@@ -22,7 +22,7 @@
   ansible.builtin.lineinfile:
     path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
     regexp: "{{item.name}}"
-    line: "{{item.id}}"
+    line: uid = {{item.id}}
   loop:
     - { name: "uid" , id: "{{appuser.uid}}"}
     - { name: "gid" , id: "{{appuser.group}}"}
