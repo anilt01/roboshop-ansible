@@ -1,13 +1,3 @@
-
-#    APP_UID=$(id -u roboshop)
-#    APP_GID=$(id -g roboshop)
-#
-#    echo "Update Payment Configuration file"
-#    sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid = ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.ini &>>${LOG_FILE}
-#    StatusCheck $?
-#
-#    SYSTEMD_SETUP
-
 - name: Download pyhon devel, python and gcc
   ansible.builtin.yum:
     name:
@@ -27,6 +17,15 @@
 - name: print
   debug:
     msg: User ID = "{{appuser.uid}}" , Group ID = "{{appuser.group}}"
+
+- name: Update user and  group id
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
+    regexp: "{{item.name}}"
+    line: "{{item.id}}"
+  loop:
+    - { name: "uid" , id: "{{appuser.uid}}"}
+    - { name: "gid" , id: "{{appuser.group}}"}
 
 - name: Import system-setup task
   ansible.builtin.import_tasks: system-setup.yml
