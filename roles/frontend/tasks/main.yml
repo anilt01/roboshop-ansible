@@ -1,32 +1,56 @@
-- name: Install Nginx
+#LOG_FILE=/tmp/frntend
+#source common.sh
+#
+#echo Installing Nginx
+#yum install nginx -y &>>LOG_FILE
+#StatusCheck $?
+#
+#echo Downloading Nginx web content
+#curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>> /tmp/frontend
+#StatusCheck $?
+#
+#echo switch directory
+#cd /usr/share/nginx/html &>>LOG_FILE
+#
+#echo remove previous web content
+#rm -rf * &>>LOG_FILE
+#StatusCheck $?
+#
+#echo unzipping files
+#unzip /tmp/frontend.zip &>>LOG_FILE
+#mv frontend-main/static/* . &>>LOG_FILE
+#mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf &>> /tmp/frontend
+#StatusCheck $?
+#
+#echo Starting Nginx Service
+#systemctl enable nginx &>>LOG_FILE
+#systemctl restart nginx &>>LOG_FILE
+#StatusCheck $?
+
+- name: Installing Nginx Server
   ansible.builtin.yum:
     name: nginx
     state: installed
 
-- name: Remove previous web content
+- name: Remove previous files data
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
 
-- name: Unzip nginx web content
+- name: Downloading Nginx web content
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
     dest: /tmp
     remote_src: yes
 
-- name: Copy nginx web content
+- name: copying files to the path
   ansible.builtin.copy:
     src: /tmp/frontend-main/static/
-    dest: /usr/share/nginx/html/
+    dest: /usr/share/nginx/html
     remote_src: yes
 
-- name: Copy RoboShop Nginx Config file
-  ansible.builtin.copy:
-    src: roboshop.conf
-    dest: /etc/nginx/default.d/roboshop.conf
-
-- name: Start nginx
-  ansible.builtin.service:
-    name: nginx
-    state: restarted
-    enabled: yes
+#- name: copying files to the path
+#  ansible.builtin.copy:
+#    src: /tmp/frontend-main/static/
+#    dest: /usr/share/nginx/html
+#    remote_src: yes
