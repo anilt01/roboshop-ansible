@@ -18,7 +18,7 @@
 
 - name: setup MongoDB repo file
   ansible.builtin.copy:
-    sre: mongo.repo
+    src: mongo.repo
     dest: /etc/yum.repos.d/mongodb.repo
 
 - name: Install and start mongodb service
