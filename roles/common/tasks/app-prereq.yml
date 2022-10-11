@@ -1,19 +1,3 @@
-
-#    echo "Download ${COMPONENT} Application Code"
-#    curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG_FILE}
-#    StatusCheck $?
-#
-#    echo "Clean Old App Content"
-#    cd /home/roboshop && rm -rf ${COMPONENT} &>>${LOG_FILE}
-#    StatusCheck $?
-#
-#    echo "Extract ${COMPONENT} Application Code"
-#    unzip /tmp/${COMPONENT}.zip &>>${LOG_FILE}
-#    StatusCheck $?
-#
-#    mv ${COMPONENT}-main ${COMPONENT} && cd /home/roboshop/${COMPONENT}
-#  }
-
 - name: Adding Roboshop user
   ansible.builtin.user:
     name: roboshop
