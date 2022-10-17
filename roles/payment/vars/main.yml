@@ -1,2 +1,2 @@
 COMPONENT: payment
-SECRETS: "{{lookup('amazon.aws.aws_secret', 'roboshop/all-secrets', region='us-east-1')}}"
+SECRETS: "{{lookup('amazon.aws.aws_secret', 'roboshop/all', region='us-east-1')}}"
