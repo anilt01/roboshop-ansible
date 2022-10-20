@@ -1,0 +1,15 @@
+- name: Download golang
+  ansible.builtin.yum:
+    name: golang
+    state: installed
+
+- name: Import app-prereq task
+  ansible.builtin.import_tasks: app-prereq.yml
+
+- name: Installing golang requirements for the file
+  ansible.builtin.pip:
+    requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
+    executable: pip3
+
+- name: Import system-setup task
+  ansible.builtin.import_tasks: system-setup.yml

@@ -1,0 +1,9 @@
+- name: Installing golang module
+  ansible.builtin.yum:
+    name: golang
+    state: installed
+
+- name: Import app-prereq task
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-prereq.yml
