@@ -32,7 +32,7 @@
   ansible.builtin.shell: go get main.go
 
 - name: Run Go container
-  podman_container:
+  ansible.builtin.go:
     name: dispatch
     image: golang
     command: go mod init
