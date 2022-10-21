@@ -25,5 +25,7 @@
     remote_src: yes
   become_user: roboshop
 
-- name: setting up dispatch service
-  go.run: /home/roboshop/{{COMPONENT}}/main.go
+- name: Installing PIP requirements for the file
+  ansible.builtin.pip:
+    requirements: /home/roboshop/{{COMPONENT}}/main.go
+    executable: go run
