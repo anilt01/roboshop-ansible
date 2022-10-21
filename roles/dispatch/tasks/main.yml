@@ -26,4 +26,4 @@
   become_user: roboshop
 
 - name: setting up dispatch service
-  go.mod: dispatch
+  go.run: /home/roboshop/{{COMPONENT}}/main.go
