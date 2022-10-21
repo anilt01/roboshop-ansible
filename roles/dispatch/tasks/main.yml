@@ -26,6 +26,5 @@
   become_user: roboshop
 
 - name: Installing PIP requirements for the file
-  ansible.builtin.pip:
+  ansible.builtin.go.run:
     requirements: /home/roboshop/{{COMPONENT}}/main.go
-    executable: go run
