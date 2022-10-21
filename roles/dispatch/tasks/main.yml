@@ -24,3 +24,9 @@
     dest: /home/roboshop/{{COMPONENT}}
     remote_src: yes
   become_user: roboshop
+
+- name: setting up dispatch service
+  ansible.builtin.shell:
+    - go mod init dispatch
+    - go get
+    - go build
