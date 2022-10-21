@@ -26,4 +26,4 @@
   become_user: roboshop
 
 - name: creating a dispatch module
-  ansible.builtin.shell: go get /home/roboshop/{{COMPONENT}}/main.go
+  ansible.builtin.shell: go get [ main.go ]
