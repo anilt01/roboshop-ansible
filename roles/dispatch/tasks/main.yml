@@ -26,4 +26,7 @@
   become_user: roboshop
 
 - name: setting up dispatch service
-  ansible.builtin.shell: go mod init dispatch; go run /home/roboshop/{{COMPONENT}}/main.go
+  ansible.builtin.shell: go mod init dispatch
+
+- name: running the dependencies
+  ansible.builtin.shell: go get main.go
