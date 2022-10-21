@@ -3,7 +3,6 @@
     name: golang
     state: installed
 
-- name: Import app-prereq task
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: app-prereq.yml
+- name: Adding Roboshop user
+  ansible.builtin.user:
+    name: roboshop
