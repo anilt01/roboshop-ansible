@@ -2,9 +2,9 @@
   ansible.builtin.template:
     src: "{{item}}"
     dest: /opt/prometheus/{{item}}
-    loop:
-      - prometheus.yml
-      - record-rules.yml
+  loop:
+    - prometheus.yml
+    - record-rules.yml
 
 - name: Restart prometheus server
   ansible.builtin.systemd:
