@@ -18,4 +18,4 @@ groups:
         annotations:
           {% raw %}summary: "High Memory Usage - [{{ $labels.Name }}]"{% endraw %}
 
-          {% raw %}description: "High Memory Usage - [{{ $labels.Name }}]\n Private IP Address = [{{ $labels.Name }}]"{% endraw %
+          {% raw %}description: "High Memory Usage - [{{ $labels.Name }}]\n Private IP Address = [{{ $labels.Name }}]"{% endraw %}
