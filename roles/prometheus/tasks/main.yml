@@ -26,7 +26,7 @@
 
 - name: Restart alert manager service
   ansible.builtin.systemd:
-    name: prometheus
+    name: alertmanager
     state: restarted
 
 - name: wait for alert manager service to start
