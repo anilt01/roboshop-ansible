@@ -29,7 +29,7 @@ groups:
 
           {% raw %}description: "High CPU Usage - [{{ $labels.Name }}]\n Private IP Address = [{{ $labels.Name }}]"{% endraw %}
 
-{% for item in seq %}
+{% for component in components %}
       - alert: ServiceDown
         expr: node_systemd_unit_state{name="{{component}}.service",state="active"} < 1
         labels:
@@ -38,5 +38,4 @@ groups:
           summary: "{{component}} Service Down -{% raw %} [{{ $labels.Name }}]"{ % endraw % }
 
           description: "{{component}} Service Down -{% raw %} [{{ $labels.Name }}]\n Private IP Address = [{{ $labels.Name }}]"{ % endraw % }
-
 {% endfor %}
