@@ -31,7 +31,7 @@ groups:
 
 {% for component in components %}
       - alert: ServiceDown
-        expr: node_systemd_unit_state{name="{{component}}.service",state="active}<1
+        expr: node_systemd_unit_state{name="{{component}}.service",state="active} < 1
         labels:
           severity: critical
         annotations:
