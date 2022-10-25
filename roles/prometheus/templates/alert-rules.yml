@@ -35,8 +35,8 @@ groups:
         labels:
           severity: critical
         annotations:
-          summary: "{{component}} Service Down - {% raw %}[{{ $labels.Name }}]"{% endraw %}
+          summary: "{{component}} Service Down -{% raw %} [{{ $labels.Name }}]"{% endraw %}
 
-          description: "{{component}} Service Down - {% raw %}[{{ $labels.Name }}]\n Private IP Address = [{{ $labels.Name }}]"{% endraw %}
+          description: "{{component}} Service Down -{% raw %} [{{ $labels.Name }}]\n Private IP Address = [{{ $labels.Name }}]"{% endraw %}
 
 {% endfor %}
