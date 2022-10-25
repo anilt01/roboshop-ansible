@@ -1,7 +1,7 @@
 - name: Adding Roboshop user
   ansible.builtin.user:
     name: roboshop
-    register: appuser
+  register: appuser
 
 - name: clearing all the previous files
   ansible.builtin.file:
