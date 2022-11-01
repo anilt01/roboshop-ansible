@@ -1,0 +1,3 @@
+- name: Load logstash
+  when: LOGSTASH is defined
+  ansible.builtin.import_tasks: logstash.yml
