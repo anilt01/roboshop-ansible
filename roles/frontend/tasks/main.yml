@@ -42,3 +42,8 @@
     name: nginx
     enabled: yes
     state: started
+
+- name: Install filebeat
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: filebeat
