@@ -12,6 +12,9 @@
     name: elk
     tasks_from: rsyslog
 
+- name: Install python 3.9
+  ansible.builtin.shell: yum install python39-devel -y
+
 - name: Install botocore and boto3
   ansible.builtin.pip:
     name:
